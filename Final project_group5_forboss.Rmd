@@ -1,0 +1,327 @@
+---
+title: "Final project for the boss"
+author: "Yixuan"
+date: "2023-12-09"
+output: html_document
+---
+# Economic Fluctuations and Crime Dynamics:A Seattle Case Study 
+
+
+## Introduction
+
+
+Understanding the relationship between economic factors and crime rates is not only a matter of academic interest but also of significant societal importance. It's a subject that combines elements of economics, sociology, and criminology, offering insights that are vital for policy-making and enhancing the overall welfare of society. In our research, we delve into this complex interplay, focusing on key economic indicators like the Consumer Price Index (CPI) and unemployment rates, and their correlation with crime rates. This exploration is crucial for several reasons. Firstly, the ability to predict crime rates based on economic indicators can significantly aid law enforcement and policy makers. By understanding how fluctuations in CPI and unemployment rates correlate with changes in crime rates, law enforcement agencies can better prepare for potential increases in criminal activities. This foresight is critical for allocating resources efficiently and for implementing targeted interventions to maintain social order and public safety.
+
+
+Existing research and literature provide a solid foundation for our study. Economic activities, particularly as indicated by unemployment rates, impact crime rates in several ways. A deteriorating economy increases criminal motivations within the population by intensifying social strain and reducing social control. This escalation in criminal motivations is compounded by the increased vulnerability of potential targets during economic downturns, which, in turn, creates more criminal opportunities. Studies have shown a strong link between unemployment and various types of crimes, including both violent and non-violent offenses, in varied contexts. These studies highlight the multifaceted nature of the relationship between economic conditions and crime rates.
+In our research, we delve into four key areas to understand the complex relationship between crime rates and economic indicators. We begin by analyzing the evolution of crime rates over the past four years. This involves looking at various types of crimes – from violent offenses to property crimes – to understand the overall trends. Are there spikes or significant drops during this period? This analysis sets the foundation for our research, providing a clear picture of the crime landscape over these years. Next, we explore how the Consumer Price Index (CPI) – a measure of inflation and economic well-being – correlates with crime rates. Is there a direct relationship where an increase in CPI leads to an increase in certain types of crimes? We will scrutinize CPI trends alongside crime data to identify any patterns that emerge, thereby understanding if economic hardships or prosperity reflected in CPI have a tangible impact on crime. And we investigate whether there's a geographical pattern to crime rates in relation to income levels. Are areas with lower income levels more prone to higher crime rates? This part of the research involves mapping crime data against income data, potentially uncovering correlations between socio-economic status and the propensity for various crimes. Finally, we examine the link between unemployment rates and crime rates. Previous studies have suggested a correlation, but we aim to delve deeper and understand the nuances of this relationship. Does an increase in unemployment invariably lead to an increase in crime rates, or are there other mitigating factors? We will analyze unemployment data in conjunction with crime rates to explore this complex dynamic. Through these four research angles, we aim to provide a comprehensive understanding of the interplay between economic conditions and crime rates. Our goal is to not just present data, but to interpret these findings in a way that offers valuable insights for policymakers, community leaders, and the general public. The outcome of our research could inform strategies to mitigate crime and enhance socio-economic conditions in various communities.
+
+
+Our study is pertinent for a broad audience, including policymakers, sociologists, economists, and the general public and police. We hope this project helps individuals enhance their personal safety by facilitating informed decisions about living in safer neighborhoods. It supports police in comprehending policing dynamics, leading to improved resource distribution and identification of potential crime areas. Additionally, it empowers policymakers to allocate resources more effectively and implement focused intervention strategies. This project also helps economists in understanding how economic factors influence societal trends, particularly crime.
+
+
+## Data
+
+
+The selection of these datasets is driven by their direct relevance to our research objectives. The crime rate data, sourced from the reliable Seattle Open Data platform, enables us to understand the patterns and types of crimes occurring within the specified period and region. This data set offers an in-depth look into various crime incidents reported in Seattle from 2008 to the present, detailing the time, location, and nature of each incident. On the other hand, the unemployment rate and Consumer Price Index (CPI) data, obtained from the U.S. Bureau of Labor Statistics, provide insights into the economic conditions during the same timeframe. This combination of crime and economic data sets allows us to effectively explore the correlation between economic indicators and crime rates. The consistency in data collection and presentation across these datasets makes them comparable over time, which is crucial for analyzing trends and changes in both economic conditions and crime rates. Our team member, 
+Yixuan Li, played a pivotal role in identifying and sourcing these datasets.
+	
+	
+The crime data originates from Seattle's Open Data program, reflecting the city's commitment to transparency, accountability, and public engagement. This initiative aims to enhance residents' quality of life by providing access to data generated by the City of Seattle. The unemployment rate and CPI data are sourced from the U.S. Bureau of Labor Statistics, part of the Department of Labor, which regularly collects and publishes such economic data. This department ensures the standardized collection and analysis of economic data, maintaining accuracy and reliability.
+	
+	
+The crime data is typically collected by law enforcement agencies and crime reporting bureaus as part of their routine administrative duties. This data is gathered from police reports and other law enforcement records. The economic data, including unemployment rates and CPI, are compiled by government economic departments or agencies, employing standardized methods for data collection and analysis. These datasets are publicly available and can be freely accessed for research and analysis purposes, as they are released by government agencies. However, there may be restrictions on their commercial use or redistribution without appropriate attribution or permission. The government's effort to make these data publicly accessible is aimed at enabling solutions to urgent civic challenges outside the government apparatus.
+	
+	
+The crime dataset encompasses various crime incidents reported by the Seattle Police Department, representing a significant subset of all possible crime incidents that could be reported. The population refers to the entire spectrum of crime incidents, while the sample includes the specific incidents recorded in the dataset. This dataset provides a comprehensive view of the crime landscape in Seattle. The population for the economic data generally refers to the entire group that the Bureau of Labor Statistics seeks to analyze or make inferences about, like all workers in the U.S. labor force. The sample includes a subset of the population actually surveyed or measured, such as a selection of goods and services for the CPI.
+	
+	
+We encountered data quality issues primarily related to the size and completeness of the datasets. We filtered the data to focus on the years 2019 to 2022 because the original data spanned from 2008 to 2023, which was too extensive for our study. The data for 2023 was also excluded due to the absence of complete data for December, leading to an incomplete representation for that year.
+
+
+This research project sought to examine the intricate relationships among the Consumer Price Index (CPI), unemployment rates, and crime rates over an 11 year span (from 2019-2022). For this endeavor, an intensive process involved data collection, merger, and analysis as well as dealing with numerous data quality issues while making key methodological decisions.
+
+
+Notable are records with specific Latitude values as this signals potential missing or inaccurate data. Furthermore, without a specific explanation for Micro Community Policing Plan (MCPP) codes, understanding geospatial patterns challenging; furthermore, the absence of an exact time zone may introduce inaccuracies into temporal analyses.
+This research dataset consisted of an amalgamation of data culled from various sources, with special consideration paid to crime reports, CPI, and unemployment rates. This dataset was carefully organized as follows: 1,085,394 rows were dedicated each day for reporting crimes with 17 columns dedicated to daily reports. 4 rows per CPI factor and 15 per unemployment indicator had four rows each dedicated for analysis in parallel format into 48 rows each which provided Date/Total Cases/CPI Indices/Unemployment rates which enabled in-depth exploration between variables in detail for analysis in-depth explorations between variables in detail for analysis in depth for analysis in depth explorations between variables in detail allowing in-depth exploration between variables in detail for analysis in-depth analyses between variables of interest in detail for analysis in depth between variables in detail for analysis in-depth exploration between variables in detail for analysis in-depth exploration between variables of interest between variables in detail for analysis as the detailed analysis between variables in detail as follows.
+
+
+Our final dataset produced through careful data processing consists of 48 observations covering January 2019 to December 2022 with each row representing monthly crime cases, Consumer Price Index (CPI), and Unemployment Rate aggregations by month. Relevant variables in each row include Date for date/year identification purposes, total cases representing reported crimes by type by month as well as CPI showing consumer price Index Index levels as well as Unemployment_rate which measures unemployed rates by month of occurrence.
+
+
+Concerns with data quality were identified and addressed appropriately. Crime data needed extensive filtering in order to remove anomalous values like inaccurate geographic coordinates that likely represent placeholders or mistakes; additionally, 2023 data had to be excluded due to December not being complete at the time of analysis.
+
+
+## Method
+
+
+This research employs several key steps to generate meaningful insight. Variable selection for date, total crime cases, Consumer Price Index (CPI), and Unemployment Rate data is determined based on its relevance and ability to provide an in-depth knowledge of crime trends and socioeconomic factors. Offense start times are standardized before filtering to only include years from 2019-2022 (if relevant). Merging additional datasets like CPI or Unemployment Rate data further enriches analysis by offering critical socioeconomic indicators.
+
+
+Data Processing Methodology involves several key steps. After first converting offense start times to standard formats with the help of the mdy_hms() function, filtering was undertaken to select only relevant years from 2019-2022 for further examination and temporal trend analysis; additional datasets like CPI and Unemployment Rate data were integrated using readr package before merging was conducted between Year and Month columns in creating one final dataset.
+
+
+Geospatial mapping was used to achieve visual clarity using the ggplot2 package and Simple Features (SF). A random crime sample (1% from randomly collected crime data) was chosen as a mapping data sample to maintain visual appeal while satisfying visual requirements.
+
+
+We focused on both aspects of crime data while keeping in mind our audience is already acquainted with them and communicating clearly and concisely. Approach Our approach relies on careful tradeoffs that ensure robust analyses while serving as the basis for further research. One feature unique to this analysis was the use of Geographic mapping. The spatial displays allow for enhanced data presentation and provide essential insight into how physical factors may influence crime rates. Correlating crime data with economic information allows people and our audience to unearth geographical patterns and trends not readily apparent with traditional statistical techniques. By doing this, this research adds an entirely new aspect to analysis, providing greater insights into factors affecting crime rates while making things simpler for target audiences to comprehend.We also use regression lines to help us better distinguish the relationship between our variables. Judging from our graph, the relationship between income and the total number of crimes is not particularly large, but the relationship between time and the unemployment rate grows in a stable straight line.
+
+
+```{r, echo=FALSE}
+library(lubridate)
+library(tidyverse)
+library(ggplot2)
+library(sf)
+merged_crime <- read.csv("merged_crime.csv")
+Crime <- read.csv("Crime.csv")
+CPI <- read.csv("CPI.csv")
+Unemp <- read.csv("Unemp.csv")
+cm <- read.csv("crime_formap.csv")
+Crime$Date <- as.Date(Crime$Date, format = "%Y-%m-%d")
+CPI$Date <- as.Date(CPI$Date, format = "%Y-%m-%d")
+Unemp$Date <- as.Date(Unemp$Date, format = "%Y-%m-%d")
+```
+
+```{r, echo=FALSE}
+ggplot(Crime, aes(x = Date)) +
+  geom_line(aes(y = TotalCases, color = "Total Cases")) +
+  labs(title = "Crime Trends over Time", x = "Date", y = "Case Number")
+
+ggplot(Crime, aes(x = TotalCases)) + 
+  geom_histogram(aes(y = ..density..), fill = "blue") + # Adjust binwidth as needed
+  geom_density(colour = "red", size = 2) + # Adjust the size for line thickness
+  labs(x = "Crime Report", y = "Density")
+```
+First We did a Density graph and Time Distribution graph for the crime data. We can see that In the Time line, The crime cases hase a drastic change around between 2020 and 2021. For the density graph, We can see that it is normal distributed with a single peak(representing it fluctuate around certain number) but with a long right tail representing a outliar some(Here we think representing the 2020/2021 data).
+
+
+```{r, echo=FALSE}
+ggplot(CPI, aes(x = Date)) +
+  geom_line(aes(y = CPI, color = "CPI")) +
+  labs(title = "CPI Trends over Time", x = "Date", y = "CPI")
+
+ggplot(CPI, aes(x = CPI)) + 
+  geom_histogram(aes(y = ..density..), fill = "blue") + # Adjust binwidth as needed
+  geom_density(colour = "red", size = 2) + # Adjust the size for line thickness
+  labs(x = "CPI", y = "Density")
+```
+Then We did a Density graph and Time Distribution graph for the CPI data. We can see that In the Time line, The CPI stays around 255 before 2020 and keep increasing after that. For the density graph, We can see that it is a multimodle with multiple peaks representing a changing value. Since our object is to analysis the crime with economic factors, here we compare these two graph with crime's. We can tell that their pattern is pretty different and cound't find clue about their connection. 
+
+
+```{r, echo=FALSE}
+ggplot(Unemp, aes(x = Date)) +
+  geom_line(aes(y = Unemployment_rate, color = "Unemployment Rate")) +
+  labs(title = "Unemployment Rate over Time", x = "Date", y = "Unemployment Rate")
+
+ggplot(Unemp, aes(x = Unemployment_rate)) + 
+  geom_histogram(aes(y = ..density..), fill = "blue") + # Adjust binwidth as needed
+  geom_density(colour = "red", size = 2) + # Adjust the size for line thickness
+  labs(x = "Unemployment Rate", y = "Density")
+```
+Third, We did a Density graph and Time Distribution graph for the Unemployment rate data. We can see that In the Time line, The Unemployment rate had a drastic change around between 2020 and 2021. For the density graph, We can see that it is not perfectly unimodal but with a long right tail indicate outliers and anomalies in the unemployment rates here around 2020/2021. Since they both have a similar pattern for both time graph and density graph, we decide to make a further analysis about these two data.
+
+
+```{r, echo=FALSE}
+ggplot(merged_crime, aes(x = Unemployment_rate, y = TotalCases, color = as.factor(Year))) +
+  geom_point() +
+  geom_smooth(method=lm, se=FALSE, color="black") +
+  scale_color_brewer(type = "qual", palette = "Set1") +
+  labs(title = "Trends over Time", x = "Unemployment_rate", y = "TotalCases")
+```
+Here we made a scatter points graph for these two variable(unemployment rate and crime case number) with regression line. The regression line suggests that there is a positive relationship between the unemployment rate and the total number of cases, But the relationship is not strong enough, and the plot indicates a higher density of data points in the lower range of the unemployment rate, suggesting that most observations fall within this range. In this case, we can't just conclude that they are correlated. To draw more specific conclusions, one would need to conduct a quantitative analysis of the regression line, including the calculation of the slope, intercept, and the R-squared value to understand the strength of the relationship.
+
+
+```{r, echo=FALSE}
+Map_data <- st_read("income.shp") 
+Map_data <- Map_data %>% filter(!is.na(capital_in))
+Map_data$capital_in <- as.numeric(Map_data$capital_in)
+Crime_sf <- st_as_sf(cm, coords = c("Longitude", "Latitude"), crs = st_crs(Map_data))
+
+set.seed(123) # Set a seed for randomlizing the data
+sample_size <- 0.01 # for map displaying, take 1% of the data
+Crime_sampled <- Crime_sf[sample(nrow(Crime_sf), nrow(Crime_sf) * sample_size), ]
+
+seattle_center <- c(-122.3321, 47.6062) # set coordinates for Seattle
+range <- 0.1 # This sets the range around the center
+
+final_plot <- ggplot() +
+  geom_sf(data = Map_data, aes(fill = capital_in)) + 
+  geom_sf(data = Crime_sampled, color = "blue", size = 0.5) +
+  coord_sf(xlim = c(seattle_center[1] - range, seattle_center[1] + range), 
+           ylim = c(seattle_center[2] - range, seattle_center[2] + range)) +
+  scale_fill_viridis_c() +
+  labs(title = "Map of Capital income and Crime report",
+       fill = "Capital income") +
+  theme_minimal()
+
+print(final_plot)
+```
+To explore the relationship between the capital income factor and the crime cases, We made an choropleth map with a dot density map so explore their relationship. In the map, we can see that the income crime cases are largely distributed around downtown area, but seemingly not necessarily in low income areas. To further explore their relationship, we made another scatter points graph with regression line.
+
+
+```{r, echo=FALSE}
+Map_data <- Map_data %>% 
+  filter(!is.na(capital_in)) %>%
+  mutate(capital_in = as.numeric(capital_in))
+
+Map_data_validity <- st_is_valid(Map_data, NA_on_exception = TRUE)
+if(any(!Map_data_validity, na.rm = TRUE)) {
+  #fix invalid geometries
+  Map_data <- st_make_valid(Map_data)
+}
+
+Crime_data_joined <- st_join(Crime_sf, Map_data)
+
+# Aggregate crime data by area
+Crime_by_area <- Crime_data_joined %>%
+  group_by(GEOID) %>%
+  summarise(crime_count = n())
+
+Map_data_with_crime <- Map_data %>%
+  st_join(Crime_by_area)
+
+ggplot(Map_data_with_crime, aes(x = crime_count, y = capital_in)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) + # Add a regression line without standard error
+  labs(x = "Number of Crimes", y = "Capital Income", title = "Income vs. Crime Analysis") +
+  theme_minimal()
+```
+As we can see in this graph, the points are spread across the plot, suggesting variability in both the number of crimes and the capital income levels. Also, there does not appear to be a strong linear relationship between the number of crimes and capital income, as the points do not cluster around a line but are rather dispersed. It's also worth noting that the relationship between income and crime can be complex and influenced by a wide array of social, economic, and environmental factors. Thus, a multidimensional analysis might be necessary to understand the underlying dynamics fully.
+
+
+
+```{r, echo=FALSE}
+ggplot(CPI, aes(x = Date)) +
+  geom_line(aes(y = CPI, color = "CPI")) +
+  labs(title = "CPI Trends over Time", x = "Date", y = "CPI")
+
+ggplot(CPI, aes(x = CPI)) + 
+  geom_histogram(aes(y = ..density..), fill = "blue") + # Adjust binwidth as needed
+  geom_density(colour = "red", size = 2) + # Adjust the size for line thickness
+  labs(x = "CPI", y = "Density")
+```
+Then We did a Density graph and Time Distribution graph for the CPI data. We can see that In the Time line, The CPI stays around 255 before 2020 and keep increasing after that. For the density graph, We can see that it is a multimodle with multiple peaks representing a changing value. Since our object is to analysis the crime with economic factors, here we compare these two graph with crime's. We can tell that their pattern is pretty different and cound't find clue about their connection. 
+
+```{r, echo=FALSE}
+ggplot(Unemp, aes(x = Date)) +
+  geom_line(aes(y = Unemployment_rate, color = "Unemployment Rate")) +
+  labs(title = "Unemployment Rate over Time", x = "Date", y = "Unemployment Rate")
+
+ggplot(Unemp, aes(x = Unemployment_rate)) + 
+  geom_histogram(aes(y = ..density..), fill = "blue") + # Adjust binwidth as needed
+  geom_density(colour = "red", size = 2) + # Adjust the size for line thickness
+  labs(x = "Unemployment Rate", y = "Density")
+```
+Third, We did a Density graph and Time Distribution graph for the Unemployment rate data. We can see that In the Time line, The Unemployment rate had a drastic change around between 2020 and 2021. For the density graph, We can see that it is not perfectly unimodal but with a long right tail indicate outliers and anomalies in the unemployment rates here around 2020/2021. Since they both have a similar pattern for both time graph and density graph, we decide to make a further analysis about these two data.
+
+```{r, echo=FALSE}
+ggplot(merged_crime, aes(x = Unemployment_rate, y = TotalCases, color = as.factor(Year))) +
+  geom_point() +
+  geom_smooth(method=lm, se=FALSE, color="black") +
+  scale_color_brewer(type = "qual", palette = "Set1") +
+  labs(title = "Trends over Time", x = "Unemployment_rate", y = "TotalCases")
+```
+Here we made a scatter points graph for these two variable(unemployment rate and crime case number) with regression line. The regression line suggests that there is a positive relationship between the unemployment rate and the total number of cases, But the relationship is not strong enough, and the plot indicates a higher density of data points in the lower range of the unemployment rate, suggesting that most observations fall within this range. In this case, we can't just conclude that they are correlated. To draw more specific conclusions, one would need to conduct a quantitative analysis of the regression line, including the calculation of the slope, intercept, and the R-squared value to understand the strength of the relationship.
+
+```{r, echo=FALSE}
+Map_data <- st_read("income.shp") 
+Map_data <- Map_data %>% filter(!is.na(capital_in))
+Map_data$capital_in <- as.numeric(Map_data$capital_in)
+Crime_sf <- st_as_sf(cm, coords = c("Longitude", "Latitude"), crs = st_crs(Map_data))
+
+set.seed(123) # Set a seed for randomlizing the data
+sample_size <- 0.01 # for map displaying, take 1% of the data
+Crime_sampled <- Crime_sf[sample(nrow(Crime_sf), nrow(Crime_sf) * sample_size), ]
+
+seattle_center <- c(-122.3321, 47.6062) # set coordinates for Seattle
+range <- 0.1 # This sets the range around the center
+
+final_plot <- ggplot() +
+  geom_sf(data = Map_data, aes(fill = capital_in)) + 
+  geom_sf(data = Crime_sampled, color = "blue", size = 0.5) +
+  coord_sf(xlim = c(seattle_center[1] - range, seattle_center[1] + range), 
+           ylim = c(seattle_center[2] - range, seattle_center[2] + range)) +
+  scale_fill_viridis_c() +
+  labs(title = "Map of Capital income and Crime report",
+       fill = "Capital income") +
+  theme_minimal()
+
+print(final_plot)
+```
+To explore the relationship between the capital income factor and the crime cases, We made an choropleth map with a dot density map so explore their relationship. In the map, we can see that the income crime cases are largely distributed around downtown area, but seemingly not necessarily in low income areas. To further explore their relationship, we made another scatter points graph with regression line.
+
+```{r, echo=FALSE}
+Map_data <- Map_data %>% 
+  filter(!is.na(capital_in)) %>%
+  mutate(capital_in = as.numeric(capital_in))
+
+Map_data_validity <- st_is_valid(Map_data, NA_on_exception = TRUE)
+if(any(!Map_data_validity, na.rm = TRUE)) {
+  #fix invalid geometries
+  Map_data <- st_make_valid(Map_data)
+}
+
+Crime_data_joined <- st_join(Crime_sf, Map_data)
+
+# Aggregate crime data by area
+Crime_by_area <- Crime_data_joined %>%
+  group_by(GEOID) %>%
+  summarise(crime_count = n())
+
+Map_data_with_crime <- Map_data %>%
+  st_join(Crime_by_area)
+
+ggplot(Map_data_with_crime, aes(x = crime_count, y = capital_in)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) + # Add a regression line without standard error
+  labs(x = "Number of Crimes", y = "Capital Income", title = "Income vs. Crime Analysis") +
+  theme_minimal()
+```
+As we can see in this graph, the points are spread across the plot, suggesting variability in both the number of crimes and the capital income levels. Also, there does not appear to be a strong linear relationship between the number of crimes and capital income, as the points do not cluster around a line but are rather dispersed. It's also worth noting that the relationship between income and crime can be complex and influenced by a wide array of social, economic, and environmental factors. Thus, a multidimensional analysis might be necessary to understand the underlying dynamics fully.
+
+## Results
+
+
+The "Crime Trends Over Time" chart shows that the number of cases spiked dramatically around 2020, then declined and stabilized. The crime trend fluctuates around 6000 and changes sharply between 2020 and 2021. However, the CPI has increased rapidly since 2021. We couldn't see this. It may be related to the social and economic dislocation of the period. On the other hand, we found that the crime report is a nominal distribution with an Outlier, but that of CPI is a multimodal distribution with several peaks. This suggests that most of the data is mean-centered, but there are exceptions that may be of concern. Also, after we analyzed the trend in the CPI over time, we found that the trend in the CPI is steadily increasing, suggesting that Seattle has had inflationary pressures over the years studied. By analyzing the distribution density graph of the Unemployment Rate And Crime Number, we found that they Have the same pattern of Tail Behavior: Both distributions show a longer right tail, which suggests that there were outliers. When we did the Time analysis of these two factors, We found that they both have a draft change between 2020 and 2021. 2021. In particular, there was a sharp rise in unemployment in early 2020, which may have been caused by the COVID-19 pandemic but which recovered in the following months. A "trend over time" plot comparing crime and unemployment rates shows the correlation, further confirmed by a scatter plot with trend lines where both peaked simultaneously, suggesting a possible positive correlation between unemployment and crime cases. When we further explored the overlay graph of capital income versus crime reports, we found that higher crime rates may not be confined to low-income areas, suggesting a more complex social dynamic. Also, the scatterplot of income versus crime shows that there is not a strong correlation between capital income and the amount of crime, which challenges common assumptions about the relationship between income and crime rates.
+
+
+The results of the graphical analysis above allow us to explain further the four questions posed earlier:
+
+
+Seattle's crime rate reached a significant peak in 2020, most likely due to the social and economic impacts of the pandemic. And after 2020, crime rates stabilized, suggesting that the peak was only temporary.
+
+
+Our charts do not clearly show the relationship between CPI and crime rates. While the long-term trend suggests that there may be a correlation between higher inflation and higher crime rates due to economic pressures, we believe that the data we have provided requires more in-depth statistical analysis to determine if there is a significant relationship between these two factors.
+
+
+The maps show that higher crime rates are not unique to low-income areas, highlighting the multifaceted nature of crime across income levels.
+
+
+By examining the relationship between unemployment and crime rates, especially at the peak in 2020, we find a potential correlation between the two.
+
+
+The analysis of Seattle's data from 2019 to 2022 reveals a complex relationship between crime rates, unemployment, and CPI. These findings highlight the multifaceted nature of urban socio-economic dynamics, where simple correlations between economic indicators and social phenomena such as crime may not capture the full picture. The data highlight the need for a nuanced understanding of how economic factors, such as inflation and unemployment, interact with social problems, thereby challenging traditional assumptions about the causality of crime.
+
+
+The analysis is limited by the time frame and the complexity of socioeconomic factors influencing crime and economic indicators. Future work could include multivariate analyses that include additional social factors and more extended time frames to assess long-term trends and the impact of policy changes. Specifically, the limitations of this study, primarily the focus on one city and the short time span, suggest that the findings may need to be more generalizable or indicative of long-term trends. Future research could expand the scope of the study both geographically and in terms of period to gain a more comprehensive understanding of these relationships. In addition, including more diverse socioeconomic indicators and qualitative analyses could further elucidate the complex interplay between economic conditions and crime rates.
+
+
+In future studies, we will consider adding more data and factors at the societal level, not just the economic one. For example, whether government policy changes affect crime growth, people's education levels, family structure, access to social services, substance abuse rates, and neighborhood characteristics such as housing stability and urban development. Or even climate change. These factors can help us understand more fully the complex dynamics that affect crime rates and socioeconomic conditions.
+
+
+## Project Summary
+
+
+The research critically examines the interplay between key economic indicators, such as the Consumer Price Index (CPI) and unemployment rates, and their influence on crime rates. This interdisciplinary study, merging economics, sociology, and criminology, is premised on the hypothesis that economic downturns, especially reflected in rising unemployment, correlate with increased crime rates.
+
+Drawing on existing literature, the study explores how economic hardships heighten criminal motivations and increase the vulnerability of potential targets, thereby escalating crime rates. The research methodology encompasses a comprehensive analysis of these economic indicators and their correlation with crime trends. Preliminary findings suggest a weak correlation between economic fluctuations and crime rates, but not strong enough to suggest their positive relationship.
+
+The study's conclusions emphasize the complex and multifaceted nature of the relationship between economic conditions and crime rates. Through research, we discovered why studying some economic factors alone is not enough to summarize the changes in crime rates. The crime rate should be a more complex social issue that requires analysis from multiple disciplines such as sociology and psychology as well as more comprehensive data.
+
+
+## Citation
+
+
+Phillips, Julie A., and Kenneth C. Land. “The Link Between Unemployment and Crime Rate Fluctuations: An Analysis at the County, State, and National Levels.” Social Science Research, vol. 41, no. 3, May 2012, pp. 681–94. https://doi.org/10.1016/j.ssresearch.2012.01.001.
+
+Jawadi, Fredj, et al. “Does Higher Unemployment Lead to Greater Criminality? Revisiting the Debate Over the Business Cycle.” Journal of Economic Behavior and Organization, vol. 182, Feb. 2021, pp. 448–71. https://doi.org/10.1016/j.jebo.2019.03.025.

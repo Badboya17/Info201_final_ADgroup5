@@ -1,0 +1,217 @@
+---
+title: "Final Project"
+author: "Yixuan"
+date: "2023-12-06"
+output: html_document
+---
+# Inquiry of Correlation of CPI, Unemployment and Crime rate
+
+## Data Processing
+
+```{r}
+library(lubridate)
+library(tidyverse)
+library(ggplot2)
+library(sf)
+```
+
+```{r}
+Crime_data <- read.csv("SPD_Crime_Data__2008-Present_20231109.csv")
+head(Crime_data, 3)
+nrow(Crime_data)# data size: number of rows and columns
+ncol(Crime_data)
+```
+Here, the crime dataset is from "SPD Crime Data: 2008-Present
+https://data.seattle.gov/Public-Safety/SPD-Crime-Data-2008-Present/tazs-3rd5" 
+It contains columns like report number, offence ID, Time duration offence type, etc. In our project, What we are going to do analysis as the correlation between crime number and labor index(CPI and Unemployment rate). In that case, what we need in this dataset is the number of crime in each month of each year from 2019 to 2022.
+```{r}
+Crime <- Crime_data %>% 
+  mutate(Start_Date = mdy_hms(`Offense.Start.DateTime`)) %>%
+  filter(year(Start_Date) >= 2019 & year(Start_Date) <= 2022) %>% 
+  select(time = "Start_Date") %>% 
+  group_by(Year = year(time), Month = month(time)) %>% 
+  summarize(TotalCases = n())
+```
+By first using mdy_hms() function, I transform the offense start time into a mdy_hms data format, for further processing. After that, I filtered data from 2019 to 2022 because the original one is 2008-2023, which is too big for the study, and 2023 data is also filtered out because the Dec month data is missing. Then, I drop columns other than time to easy the burden for R, then I further processed the data into month and year and number of cases for further analyzing. 
+
+```{r}
+CPI_data <- read.csv("project data/CPI.csv")
+Unemp_data <- read.csv("project data/Unemployment rate.csv")
+head(CPI_data, 3)
+nrow(CPI_data)# data size: number of rows and columns
+ncol(CPI_data)# the Unemployment data has the same format and size with the CPI data, so here I only summarized the CPI data.
+```
+These two datasets are from https://www.bls.gov/data/, They are CPI(Consumer Price Index) data and Unemployment data, which are already retrieved from a big data base in their website. However, These two data are in wide form and the month they are using is in String type not numerical, I need to transform and drop the Half1, Half2, which won't be use here.
+
+
+Reference: https://data.bls.gov/cgi-bin/surveymost
+Labor Force Statistics from the Current Population Survey
+Get the Unemployment rate data from 2019 - 2022
+https://data.bls.gov/pdq/SurveyOutputServlet
+Consumer Price Index for All Urban Consumers (CPI-U)
+Get the Consumer Price Index data from 2019 - 2022
+```{r}
+month <- c("Jan", "Feb", "Mar", "Apr", "May", "Jun", 
+                 "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
+CPI <- CPI_data %>%
+    gather(key = "Month", value = "CPI", -Year)
+CPI$Month <- match(CPI$Month, month)
+
+Unemp <- Unemp_data %>%
+    gather(key = "Month", value = "Unemployment_rate", -Year)
+Unemp$Month <- match(Unemp$Month, month)
+head(CPI,3)
+```
+Here, I used gather to transform the data into a long form. Gather() is a function to convert data from a wide format to a long format, useful when there are lots of columns. 
+Then, I use match(), which is used to match element with their position, to get Str months into Numerical months.
+
+```{r}
+merged_crime <- merge(Crime, CPI, by = c("Year", "Month"))
+merged_crime <- merge(merged_crime, Unemp, by = c("Year", "Month")) 
+merged_crime$Date <- with(merged_crime, as.Date(paste(Year, Month, 1, sep = "-")))
+head(merged_crime,5)
+nrow(merged_crime) # data size: number of rows and columns
+ncol(merged_crime)
+
+Crime$Date <- with(Crime, as.Date(paste(Year, Month, 1, sep = "-")))
+CPI$Date <- with(CPI, as.Date(paste(Year, Month, 1, sep = "-")))
+Unemp$Date <- with(Unemp, as.Date(paste(Year, Month, 1, sep = "-")))
+```
+
+Merge data by year and month. Then droped the month after combined them(For better plotting later)
+
+## Data Analysing 
+
+```{r}
+par(mfrow = c(1, 2))
+ggplot(Crime, aes(x = Date)) +
+  geom_line(aes(y = TotalCases, color = "Total Cases")) +
+  labs(title = "Crime Trends over Time", x = "Date", y = "Case Number")
+
+ggplot(Crime, aes(x = TotalCases)) + 
+  geom_histogram(aes(y = ..density..), fill = "blue") + # Adjust binwidth as needed
+  geom_density(colour = "red", size = 2) + # Adjust the size for line thickness
+  labs(x = "Crime Report", y = "Density")
+```
+
+```{r}
+ggplot(CPI, aes(x = Date)) +
+  geom_line(aes(y = CPI, color = "CPI")) +
+  labs(title = "CPI Trends over Time", x = "Date", y = "CPI")
+
+ggplot(CPI, aes(x = CPI)) + 
+  geom_histogram(aes(y = ..density..), fill = "blue") + # Adjust binwidth as needed
+  geom_density(colour = "red", size = 2) + # Adjust the size for line thickness
+  labs(x = "CPI", y = "Density")
+```
+
+```{r}
+ggplot(Unemp, aes(x = Date)) +
+  geom_line(aes(y = Unemployment_rate, color = "Unemployment Rate")) +
+  labs(title = "Unemployment Rate over Time", x = "Date", y = "Unemployment Rate")
+
+ggplot(Unemp, aes(x = Unemployment_rate)) + 
+  geom_histogram(aes(y = ..density..), fill = "blue") + # Adjust binwidth as needed
+  geom_density(colour = "red", size = 2) + # Adjust the size for line thickness
+  labs(x = "Unemployment Rate", y = "Density")
+```
+
+```{r}
+ggplot(merged_crime, aes(x = Date)) +
+  geom_line(aes(y = Unemployment_rate*10, color = "Unemployment Rate*10")) +
+  geom_line(aes(y = TotalCases/100, color = "Total Cases/100")) +
+  labs(title = "Trends over Time", x = "Date", y = "Number")
+
+ggplot(merged_crime, aes(x = Unemployment_rate, y = TotalCases, color = as.factor(Year))) +
+  geom_point() +
+  geom_smooth(method=lm, se=FALSE, color="black") +
+  scale_color_brewer(type = "qual", palette = "Set1") +
+  labs(title = "Trends over Time", x = "Unemployment_rate", y = "TotalCases")
+```
+
+# Map creating of Crime Report and Capital income in 2021
+
+```{r}
+Crime_Data <- read.csv("project data/crime_rate_2019_2022.csv")
+Crime <- Crime_Data %>% 
+  select("Offense.ID", "Time" = "Report.DateTime", "Longitude", "Latitude") %>% 
+  filter(Latitude != 89.99999 & Latitude != 0) 
+Crime$Time <- mdy_hms(Crime$Time)
+Crime <- Crime %>%
+  filter(year(Time) == 2021)
+head(Crime, 3)
+```
+
+This data is a Crime report data, recording peoples reporting crime, Here I reshaped the dataset, renaming columns to make them more intuitive. Then I applied an additional filter to exclude records where the Latitude is 89.99999 or 0. These values are likely to be placeholders or errors. Then I used the mdy_hms() function to filter the year to 2021, because income data is in 2021.
+
+Reference: SPD Crime Data: 2008-Present https://data.seattle.gov/Public-Safety/SPD-Crime-Data-2008-Present/tazs-3rd5
+
+```{r}
+Income_data <- read.csv("PER_CAPITA_INCOME.csv")
+income <- Income_data %>% 
+  select("GEOID", "capital_income")
+nrow(Income_data)# data size: number of rows and columns
+ncol(Income_data)
+write.csv(income, "capital_income.csv", row.names = FALSE)
+```
+This data is a monthly income data in 2021.I selected the "GEOID" as a Geopetry factor for data merging outside in QGIS(an geometry map for processing map data), and a "capital_income" data for analysis. Then I exported it to merge with a census tract shape file for mapping.
+
+Cartographic Boundary Files
+https://www.census.gov/geographies/mapping-files/time-series/geo/cartographic-boundary.html
+PER CAPITA INCOME and AGGREGATE INCOME IN THE PAST 12 MONTHS (IN INFLATION-ADJUSTED DOLLARS)
+https://data.seattle.gov/dataset/PER-CAPITA-INCOME-and-AGGREGATE-INCOME-IN-THE-PAST/bkdj-yb3f
+
+```{r}
+Map_data <- st_read("income.shp") 
+Map_data <- Map_data %>% filter(!is.na(capital_in))
+Map_data$capital_in <- as.numeric(Map_data$capital_in)
+Crime_sf <- st_as_sf(Crime, coords = c("Longitude", "Latitude"), crs = st_crs(Map_data))
+
+set.seed(123) # Set a seed for randomlizing the data
+sample_size <- 0.01 # for map displaying, take 1% of the data
+Crime_sampled <- Crime_sf[sample(nrow(Crime_sf), nrow(Crime_sf) * sample_size), ]
+
+seattle_center <- c(-122.3321, 47.6062) # set coordinates for Seattle
+range <- 0.1 # This sets the range around the center
+
+final_plot <- ggplot() +
+  geom_sf(data = Map_data, aes(fill = capital_in)) + 
+  geom_sf(data = Crime_sampled, color = "blue", size = 0.5) +
+  coord_sf(xlim = c(seattle_center[1] - range, seattle_center[1] + range), 
+           ylim = c(seattle_center[2] - range, seattle_center[2] + range)) +
+  scale_fill_viridis_c() +
+  labs(title = "Map of Capital income and Crime report",
+       fill = "Capital income") +
+  theme_minimal()
+
+print(final_plot)
+```
+
+```{r}
+Map_data <- Map_data %>% 
+  filter(!is.na(capital_in)) %>%
+  mutate(capital_in = as.numeric(capital_in))
+
+Map_data_validity <- st_is_valid(Map_data, NA_on_exception = TRUE)
+if(any(!Map_data_validity, na.rm = TRUE)) {
+  #fix invalid geometries
+  Map_data <- st_make_valid(Map_data)
+}
+
+Crime_data_joined <- st_join(Crime_sf, Map_data)
+
+# Aggregate crime data by area
+Crime_by_area <- Crime_data_joined %>%
+  group_by(GEOID) %>%
+  summarise(crime_count = n())
+
+Map_data_with_crime <- Map_data %>%
+  st_join(Crime_by_area)
+
+ggplot(Map_data_with_crime, aes(x = crime_count, y = capital_in)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) + # Add a regression line without standard error
+  labs(x = "Number of Crimes", y = "Capital Income", title = "Income vs. Crime Analysis") +
+  theme_minimal()
+```
+
