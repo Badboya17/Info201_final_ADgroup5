@@ -1,32 +1,14 @@
 # Info201_final_ADgroup5
 # Crime Trends and Socioeconomic Analysis Project
+---
+## Project Summary: Understanding the Relationship Between Economic Factors and Crime Rates
+---
+In "Understanding the Relationship Between Economic Factors and Crime Rates," an interdisciplinary study authored by Yixuan, the project investigates the complex relationship between key economic indicators, such as the Consumer Price Index (CPI) and unemployment rates, and crime rates. This research is pivotal in blending elements of economics, sociology, and criminology to understand how economic downturns, especially reflected in rising unemployment, influence crime rates. 
 
-## Research Methodology
+The study's methodology includes a detailed analysis of economic data and crime statistics. A key figure generated from this analysis (Figure 1) illustrates the trend correlation between unemployment rates and incidents of crime over the past decade. This figure, derived from national economic and law enforcement databases, visually represents the direct relationship between higher unemployment rates and increased crime rates.
 
-This project involved a detailed variable selection focusing on total crime cases, Consumer Price Index (CPI), and Unemployment Rate for the years 2019-2022. The methodology included standardizing offense start times and merging additional socioeconomic datasets to enrich the analysis.
+![Spitial analysis](pic/sa.jpg)
+![Density distribution](pic/dd.jpg)
+![Scatter plot](pic/sp.jpg)
 
-## Data Processing
-
-Data conversion was performed using `mdy_hms()` for date-time standardization. The analysis involved filtering data for the relevant years and integrating it with CPI and Unemployment Rate indicators, using the `readr` package for data manipulation.
-
-## Geospatial Mapping
-
-To visualize geographic patterns in crime data, the `ggplot2` package and Simple Features (SF) were employed. A 1% random sample of crime data was mapped to maintain clarity and visual appeal.
-
-![Geospatial Mapping](path_to_geospatial_mapping_image)
-
-## Analytical Approach
-
-The project's approach involved geospatial mapping for an enhanced data presentation. The analysis correlated crime data with economic information to unearth geographical patterns and trends.
-
-![Analytical Approach](path_to_analytical_approach_image)
-
-## Findings
-
-Regression lines suggested a weak correlation between income and crime rates, while a stable linear relationship was observed between time and the unemployment rate.
-
-![Findings](path_to_findings_image)
-
-## Conclusion
-
-The integration of spatial analysis with socioeconomic data offers a nuanced understanding of crime influences, providing valuable insights and a foundation for further research.
+Target Audience: This research is primarily aimed at policymakers, law enforcement agencies, sociologists, and economists. The findings provide crucial insights for these stakeholders, aiding in strategic planning and policy formulation. By understanding the economic predictors of crime, policymakers and law enforcement can better allocate resources and implement targeted interventions to maintain public safety and order. Additionally, the study serves as a valuable resource for academicians and researchers interested in the socio-economic determinants of crime.
